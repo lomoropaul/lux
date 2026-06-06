@@ -1,0 +1,6 @@
+update the logo to /logo.png
+hange the hero image to 
+add multi currency , ugx default
+free shipping on orders above 99 usd east africa wide
+add terms / privacy policy pages
+in the admin sectioin, switch to sidebar, fix the collections and add shadcn ffs
