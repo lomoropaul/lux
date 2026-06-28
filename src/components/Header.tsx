@@ -7,17 +7,23 @@ import { Search, ShoppingBag, Menu, X, User } from "lucide-react";
 import { useCart } from "@/lib/cart-context";
 import { CurrencySelector } from "@/components/CurrencySelector";
 import { FREE_SHIPPING_THRESHOLD_USD } from "@/lib/currency";
+import type { Category } from "@/lib/db/schema";
 
-export function Header() {
+type HeaderProps = {
+  collections: Category[];
+};
+
+export function Header({ collections }: HeaderProps) {
   const { itemCount } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
   const navLinks = [
     { href: "/shop", label: "Shop All" },
-    { href: "/shop?category=oud", label: "Oud Collection" },
-    { href: "/shop?category=floral", label: "Floral" },
-    { href: "/shop?category=unisex", label: "Unisex" },
+    ...collections.slice(0, 4).map((cat) => ({
+      href: `/shop?category=${cat.slug}`,
+      label: cat.name,
+    })),
     { href: "/about", label: "About" },
   ];
 

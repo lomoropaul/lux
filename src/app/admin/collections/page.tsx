@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
-import { getAllCategoriesAdmin } from "@/lib/categories";
+import { getAllCategoriesWithProductCounts } from "@/lib/categories";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
@@ -12,7 +12,7 @@ export default async function AdminCollectionsPage() {
   const authed = await isAdminAuthenticated();
   if (!authed) redirect("/admin/login");
 
-  const collections = await getAllCategoriesAdmin();
+  const collections = await getAllCategoriesWithProductCounts();
 
   return (
     <div className="p-6 md:p-8">
@@ -20,7 +20,7 @@ export default async function AdminCollectionsPage() {
         <div>
           <h1 className="text-2xl font-semibold text-stone-900">Collections</h1>
           <p className="text-sm text-stone-500 mt-1">
-            Manage product categories shown on the storefront
+            Manage collections and assign products to each one
           </p>
         </div>
         <Button asChild>
@@ -55,19 +55,31 @@ export default async function AdminCollectionsPage() {
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <CardTitle className="text-base">{collection.name}</CardTitle>
                     <Badge variant="outline">{collection.slug}</Badge>
+                    <Badge variant={collection.productCount > 0 ? "success" : "secondary"}>
+                      {collection.productCount} product{collection.productCount !== 1 ? "s" : ""}
+                    </Badge>
                   </div>
                   {collection.description && (
                     <p className="text-sm text-stone-500 mt-1 truncate">
                       {collection.description}
                     </p>
                   )}
+                  <Link
+                    href={`/shop?category=${collection.slug}`}
+                    className="text-xs text-amber-700 hover:underline mt-1 inline-block"
+                    target="_blank"
+                  >
+                    View on storefront →
+                  </Link>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   <Button variant="outline" size="sm" asChild>
-                    <Link href={`/admin/collections/${collection.id}/edit`}>Edit</Link>
+                    <Link href={`/admin/collections/${collection.id}/edit`}>
+                      Edit &amp; products
+                    </Link>
                   </Button>
                   <DeleteCategoryButton id={collection.id} name={collection.name} />
                 </div>

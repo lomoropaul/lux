@@ -42,6 +42,9 @@ export default async function AdminProductsPage() {
                   <th className="text-left px-4 py-3 text-xs font-medium uppercase text-stone-500">
                     Product
                   </th>
+                  <th className="text-left px-4 py-3 text-xs font-medium uppercase text-stone-500 hidden lg:table-cell">
+                    Collection
+                  </th>
                   <th className="text-left px-4 py-3 text-xs font-medium uppercase text-stone-500 hidden sm:table-cell">
                     Price (USD)
                   </th>
@@ -75,6 +78,13 @@ export default async function AdminProductsPage() {
                           <p className="text-xs text-stone-500">{product.brand}</p>
                         </div>
                       </div>
+                    </td>
+                    <td className="px-4 py-3 hidden lg:table-cell">
+                      {product.categoryName ? (
+                        <Badge variant="outline">{product.categoryName}</Badge>
+                      ) : (
+                        <span className="text-stone-400 text-xs">Uncategorized</span>
+                      )}
                     </td>
                     <td className="px-4 py-3 hidden sm:table-cell">
                       {formatPrice(product.price)}

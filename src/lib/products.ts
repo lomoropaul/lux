@@ -5,6 +5,10 @@ import type { Product } from "@/lib/db/schema";
 
 export { formatPrice, slugify } from "@/lib/utils";
 
+export type ProductWithCategory = Product & {
+  categoryName: string | null;
+};
+
 export async function getFeaturedProducts(limit = 8) {
   return db
     .select()
@@ -41,7 +45,19 @@ export async function getProductById(id: string) {
 }
 
 export async function getAllProductsAdmin() {
-  return db.select().from(products).orderBy(desc(products.createdAt));
+  const rows = await db
+    .select({
+      product: products,
+      categoryName: categories.name,
+    })
+    .from(products)
+    .leftJoin(categories, eq(products.categoryId, categories.id))
+    .orderBy(desc(products.createdAt));
+
+  return rows.map(({ product, categoryName }) => ({
+    ...product,
+    categoryName,
+  })) satisfies ProductWithCategory[];
 }
 
 export async function getCategories() {

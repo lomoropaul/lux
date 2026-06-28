@@ -1,8 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FREE_SHIPPING_THRESHOLD_USD } from "@/lib/currency";
+import type { Category } from "@/lib/db/schema";
 
-export function Footer() {
+type FooterProps = {
+  collections: Category[];
+};
+
+export function Footer({ collections }: FooterProps) {
   return (
     <footer className="bg-stone-900 text-stone-300 mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
@@ -30,21 +35,16 @@ export function Footer() {
                 All Fragrances
               </Link>
             </li>
-            <li>
-              <Link href="/shop?category=oud" className="hover:text-white transition-colors">
-                Oud Collection
-              </Link>
-            </li>
-            <li>
-              <Link href="/shop?category=floral" className="hover:text-white transition-colors">
-                Floral
-              </Link>
-            </li>
-            <li>
-              <Link href="/shop?category=unisex" className="hover:text-white transition-colors">
-                Unisex
-              </Link>
-            </li>
+            {collections.map((cat) => (
+              <li key={cat.id}>
+                <Link
+                  href={`/shop?category=${cat.slug}`}
+                  className="hover:text-white transition-colors"
+                >
+                  {cat.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 

@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { getAllProductsAdmin } from "@/lib/products";
-import { getAllCategoriesAdmin } from "@/lib/categories";
+import { getAllCategoriesWithProductCounts } from "@/lib/categories";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -12,7 +12,7 @@ export default async function AdminDashboard() {
 
   const [products, collections] = await Promise.all([
     getAllProductsAdmin(),
-    getAllCategoriesAdmin(),
+    getAllCategoriesWithProductCounts(),
   ]);
 
   return (

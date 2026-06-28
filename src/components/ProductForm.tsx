@@ -140,13 +140,25 @@ export function ProductForm({ product, categories }: ProductFormProps) {
       <div className="space-y-2">
         <Label htmlFor="categoryId">Collection</Label>
         <select id="categoryId" name="categoryId" value={form.categoryId} onChange={handleChange} className={selectClass}>
-          <option value="">None</option>
-          {categories.map((cat) => (
-            <option key={cat.id} value={cat.id}>
-              {cat.name}
+          <option value="">No collection</option>
+          {categories.length === 0 ? (
+            <option value="" disabled>
+              Create a collection first in Admin → Collections
             </option>
-          ))}
+          ) : (
+            categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name}
+              </option>
+            ))
+          )}
         </select>
+        <p className="text-xs text-stone-500">
+          Or assign multiple products from{" "}
+          <a href="/admin/collections" className="text-amber-700 hover:underline">
+            Admin → Collections → Edit &amp; products
+          </a>
+        </p>
       </div>
 
       <div className="space-y-2">
