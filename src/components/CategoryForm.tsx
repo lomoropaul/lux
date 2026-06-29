@@ -108,7 +108,10 @@ export function CategoryForm({ category, stayOnPage = false }: CategoryFormProps
         <UploadButton
           endpoint="productImage"
           onClientUploadComplete={(res) => {
-            if (res?.[0]) setForm((prev) => ({ ...prev, imageUrl: res[0].ufsUrl }));
+            if (res?.[0]) {
+              const url = res[0].url ?? (res[0] as { ufsUrl?: string }).ufsUrl;
+              if (url) setForm((prev) => ({ ...prev, imageUrl: url }));
+            }
           }}
           onUploadError={(err) => setError(err.message)}
         />

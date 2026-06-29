@@ -9,7 +9,7 @@ export const PUBLIC_HERO_PATH = path.join(
 );
 
 /** Cache-busted URL so replacing public/hero.jpg shows up immediately. */
-export function getHeroImageUrl(): string {
+export function getLocalHeroImageUrl(): string {
   try {
     const { mtimeMs } = fs.statSync(PUBLIC_HERO_PATH);
     return `/${PUBLIC_HERO_FILENAME}?v=${Math.floor(mtimeMs)}`;

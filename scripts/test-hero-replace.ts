@@ -5,7 +5,7 @@
  */
 import fs from "fs";
 import path from "path";
-import { getHeroImageUrl, PUBLIC_HERO_PATH } from "../src/lib/public-assets";
+import { getLocalHeroImageUrl, PUBLIC_HERO_PATH } from "../src/lib/public-assets";
 
 const backupPath = path.join(process.cwd(), "public", ".hero-test-backup.jpg");
 
@@ -29,7 +29,7 @@ async function main() {
   }
 
   const before = statHero();
-  const urlBefore = getHeroImageUrl();
+  const urlBefore = getLocalHeroImageUrl();
   console.log("Before:", { size: before.size, url: urlBefore });
 
   fs.copyFileSync(PUBLIC_HERO_PATH, backupPath);
@@ -37,7 +37,7 @@ async function main() {
   fs.utimesSync(PUBLIC_HERO_PATH, touched, touched);
 
   const afterTouch = statHero();
-  const urlAfterTouch = getHeroImageUrl();
+  const urlAfterTouch = getLocalHeroImageUrl();
   console.log("After touch:", { mtimeMs: afterTouch.mtimeMs, url: urlAfterTouch });
 
   if (urlBefore === urlAfterTouch) {

@@ -9,6 +9,7 @@ import {
   Layers,
   Store,
   LogOut,
+  ImageIcon,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,7 @@ const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/admin/products", label: "Products", icon: Package },
   { href: "/admin/collections", label: "Collections", icon: Layers },
+  { href: "/admin/storefront", label: "Storefront", icon: ImageIcon },
 ];
 
 export function AdminSidebar() {

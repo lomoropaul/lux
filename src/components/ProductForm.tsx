@@ -183,12 +183,14 @@ export function ProductForm({ product, categories }: ProductFormProps) {
           endpoint="productImage"
           onClientUploadComplete={(res) => {
             if (res?.[0]) {
-              const url = res[0].ufsUrl;
-              setForm((prev) => ({
-                ...prev,
-                imageUrl: prev.imageUrl || url,
-                images: [...new Set([...prev.images, url])],
-              }));
+              const url = res[0].url ?? (res[0] as { ufsUrl?: string }).ufsUrl;
+              if (url) {
+                setForm((prev) => ({
+                  ...prev,
+                  imageUrl: prev.imageUrl || url,
+                  images: [...new Set([...prev.images, url])],
+                }));
+              }
             }
           }}
           onUploadError={(err) => setError(err.message)}

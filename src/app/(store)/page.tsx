@@ -5,15 +5,14 @@ import Link from "next/link";
 import { ProductCard } from "@/components/ProductCard";
 import { getHomepageProducts } from "@/lib/products";
 import { getAllCategoriesWithProductCounts } from "@/lib/categories";
-import { getHeroImageUrl } from "@/lib/public-assets";
+import { getHeroImageUrl } from "@/lib/site-settings";
 
 export default async function HomePage() {
-  const [featured, categories] = await Promise.all([
+  const [featured, categories, heroSrc] = await Promise.all([
     getHomepageProducts(8),
     getAllCategoriesWithProductCounts(),
+    getHeroImageUrl(),
   ]);
-
-  const heroSrc = getHeroImageUrl();
 
   const heroCollection =
     categories.find((c) => c.slug.includes("oud")) ?? categories[0];
@@ -29,7 +28,7 @@ export default async function HomePage() {
             fill
             className="object-cover opacity-60"
             priority
-            unoptimized
+            unoptimized={heroSrc.startsWith("/")}
           />
         </div>
         <div className="relative z-10 text-center text-white px-4 max-w-3xl">

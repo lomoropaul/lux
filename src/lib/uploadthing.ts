@@ -16,7 +16,18 @@ export const ourFileRouter = {
       return {};
     })
     .onUploadComplete(async ({ file }) => {
-      return { url: file.ufsUrl };
+      return { url: file.url };
+    }),
+  heroImage: f({
+    image: { maxFileSize: "8MB", maxFileCount: 1 },
+  })
+    .middleware(async () => {
+      const isAdmin = await isAdminAuthenticated();
+      if (!isAdmin) throw new Error("Unauthorized");
+      return {};
+    })
+    .onUploadComplete(async ({ file }) => {
+      return { url: file.url };
     }),
 } satisfies FileRouter;
 

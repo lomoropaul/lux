@@ -64,6 +64,9 @@ export default async function AdminDashboard() {
         <Button variant="outline" asChild>
           <Link href="/admin/collections/new">Add Collection</Link>
         </Button>
+        <Button variant="outline" asChild>
+          <Link href="/admin/storefront">Homepage Hero</Link>
+        </Button>
       </div>
     </div>
   );
