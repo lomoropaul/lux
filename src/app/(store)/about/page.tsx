@@ -5,13 +5,13 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-16 md:py-24">
-      <p className="text-xs tracking-[0.3em] uppercase text-amber-700 mb-3 text-center">
+      <p className="text-xs tracking-[0.3em] uppercase text-amber-700 dark:text-amber-500 mb-3 text-center">
         Our Story
       </p>
-      <h1 className="font-serif text-4xl text-stone-900 text-center mb-8">
+      <h1 className="font-serif text-4xl text-stone-900 dark:text-white text-center mb-8">
         About LUX
       </h1>
-      <div className="prose prose-stone text-stone-600 space-y-4 text-sm leading-relaxed">
+      <div className="prose prose-stone dark:prose-invert text-stone-600 dark:text-stone-300 space-y-4 text-sm leading-relaxed">
         <p>
           LUX Fragrances was born from a passion for authentic luxury scents.
           Inspired by the world&apos;s finest perfumeries, we curate a collection

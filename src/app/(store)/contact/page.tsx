@@ -5,11 +5,11 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-16 md:py-24 text-center">
-      <p className="text-xs tracking-[0.3em] uppercase text-amber-700 mb-3">
+      <p className="text-xs tracking-[0.3em] uppercase text-amber-700 dark:text-amber-500 mb-3">
         Get in Touch
       </p>
-      <h1 className="font-serif text-4xl text-stone-900 mb-8">Contact Us</h1>
-      <p className="text-stone-600 text-sm leading-relaxed mb-8">
+      <h1 className="font-serif text-4xl text-stone-900 dark:text-white mb-8">Contact Us</h1>
+      <p className="text-stone-600 dark:text-stone-300 text-sm leading-relaxed mb-8">
         Have a question about a fragrance or need help with your order? Reach
         out to us on WhatsApp and our team will respond promptly.
       </p>

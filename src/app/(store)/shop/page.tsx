@@ -34,13 +34,13 @@ export default async function ShopPage({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16">
       <div className="text-center mb-8 sm:mb-12">
-        <p className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-amber-700 mb-2 sm:mb-3">
+        <p className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-amber-700 dark:text-amber-500 mb-2 sm:mb-3">
           Our Collection
         </p>
-        <h1 className="font-serif text-2xl sm:text-4xl md:text-5xl text-stone-900 px-2">
+        <h1 className="font-serif text-2xl sm:text-4xl md:text-5xl text-stone-900 dark:text-white px-2">
           {title.trim()}
         </h1>
-        <p className="text-stone-500 text-xs sm:text-sm mt-2 sm:mt-3">
+        <p className="text-stone-500 dark:text-stone-400 text-xs sm:text-sm mt-2 sm:mt-3">
           {productList.length} fragrance{productList.length !== 1 ? "s" : ""}
         </p>
       </div>
@@ -53,7 +53,7 @@ export default async function ShopPage({
         </div>
       ) : (
         <div className="text-center py-20">
-          <p className="text-stone-500 mb-4">No fragrances found.</p>
+          <p className="text-stone-500 dark:text-stone-400 mb-4">No fragrances found.</p>
           <a
             href="/shop"
             className="text-xs tracking-[0.2em] uppercase text-amber-700 hover:underline"
