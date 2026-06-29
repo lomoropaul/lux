@@ -5,12 +5,15 @@ import Link from "next/link";
 import { ProductCard } from "@/components/ProductCard";
 import { getHomepageProducts } from "@/lib/products";
 import { getAllCategoriesWithProductCounts } from "@/lib/categories";
+import { getHeroImageUrl } from "@/lib/public-assets";
 
 export default async function HomePage() {
   const [featured, categories] = await Promise.all([
     getHomepageProducts(8),
     getAllCategoriesWithProductCounts(),
   ]);
+
+  const heroSrc = getHeroImageUrl();
 
   const heroCollection =
     categories.find((c) => c.slug.includes("oud")) ?? categories[0];
@@ -21,11 +24,12 @@ export default async function HomePage() {
       <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-stone-900">
           <Image
-            src="/hero.jpg"
+            src={heroSrc}
             alt="Luxury fragrances"
             fill
             className="object-cover opacity-60"
             priority
+            unoptimized
           />
         </div>
         <div className="relative z-10 text-center text-white px-4 max-w-3xl">
