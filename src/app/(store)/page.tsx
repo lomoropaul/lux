@@ -35,9 +35,7 @@ export default async function HomePage() {
             New Collection 2026
           </p>
           <h1 className="font-serif text-3xl sm:text-5xl md:text-7xl tracking-wide mb-4 sm:mb-6 leading-tight">
-            The Art of
-            <br />
-            Fragrance
+            WHERE LUXURY MEETS ELEGANCE
           </h1>
           <p className="text-stone-300 text-xs sm:text-sm md:text-base leading-relaxed mb-6 sm:mb-8 max-w-lg mx-auto px-1">
             Explore our curated collection of luxury perfumes — crafted for those
