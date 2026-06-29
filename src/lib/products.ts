@@ -18,6 +18,27 @@ export async function getFeaturedProducts(limit = 8) {
     .limit(limit);
 }
 
+/** Featured products first, then recent in-stock products to fill the grid. */
+export async function getHomepageProducts(limit = 8) {
+  const featured = await getFeaturedProducts(limit);
+  if (featured.length >= limit) return featured;
+
+  const featuredIds = new Set(featured.map((p) => p.id));
+  const recent = await db
+    .select()
+    .from(products)
+    .where(eq(products.inStock, true))
+    .orderBy(desc(products.createdAt))
+    .limit(limit * 2);
+
+  const result = [...featured];
+  for (const product of recent) {
+    if (result.length >= limit) break;
+    if (!featuredIds.has(product.id)) result.push(product);
+  }
+  return result;
+}
+
 export async function getAllProducts() {
   return db
     .select()

@@ -67,6 +67,15 @@ export default async function AdminCollectionsPage() {
                       {collection.description}
                     </p>
                   )}
+                  {collection.products.length > 0 ? (
+                    <p className="text-sm text-stone-600 mt-2">
+                      {collection.products.map((p) => p.name).join(", ")}
+                    </p>
+                  ) : (
+                    <p className="text-sm text-stone-400 mt-2 italic">
+                      No products assigned yet
+                    </p>
+                  )}
                   <Link
                     href={`/shop?category=${collection.slug}`}
                     className="text-xs text-amber-700 hover:underline mt-1 inline-block"

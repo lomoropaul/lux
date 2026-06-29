@@ -134,10 +134,23 @@ export function CollectionProductsManager({
               const checked = selected.has(product.id);
               return (
                 <li key={product.id}>
-                  <label className="flex items-center gap-3 p-3 hover:bg-stone-50 cursor-pointer">
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    className="flex items-center gap-3 p-3 hover:bg-stone-50 cursor-pointer"
+                    onClick={() => toggleProduct(product.id)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        toggleProduct(product.id);
+                      }
+                    }}
+                  >
                     <Checkbox
                       checked={checked}
-                      onCheckedChange={() => toggleProduct(product.id)}
+                      tabIndex={-1}
+                      aria-hidden
+                      className="pointer-events-none"
                     />
                     <div className="relative w-10 h-12 bg-stone-100 rounded overflow-hidden shrink-0">
                       <Image
@@ -152,7 +165,7 @@ export function CollectionProductsManager({
                       <p className="text-sm font-medium text-stone-900 truncate">{product.name}</p>
                       <p className="text-xs text-stone-500">{product.brand}</p>
                     </div>
-                  </label>
+                  </div>
                 </li>
               );
             })}

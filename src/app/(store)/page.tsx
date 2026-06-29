@@ -3,13 +3,17 @@ export const dynamic = "force-dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { ProductCard } from "@/components/ProductCard";
-import { getFeaturedProducts, getCategories } from "@/lib/products";
+import { getHomepageProducts } from "@/lib/products";
+import { getAllCategoriesWithProductCounts } from "@/lib/categories";
 
 export default async function HomePage() {
   const [featured, categories] = await Promise.all([
-    getFeaturedProducts(8),
-    getCategories(),
+    getHomepageProducts(8),
+    getAllCategoriesWithProductCounts(),
   ]);
+
+  const heroCollection =
+    categories.find((c) => c.slug.includes("oud")) ?? categories[0];
 
   return (
     <>
@@ -45,12 +49,14 @@ export default async function HomePage() {
             >
               Shop Collection
             </Link>
-            <Link
-              href="/shop?category=oud"
-              className="border border-white text-white px-8 py-4 text-xs tracking-[0.2em] uppercase hover:bg-white/10 transition-colors"
-            >
-              Oud Collection
-            </Link>
+            {heroCollection && (
+              <Link
+                href={`/shop?category=${heroCollection.slug}`}
+                className="border border-white text-white px-8 py-4 text-xs tracking-[0.2em] uppercase hover:bg-white/10 transition-colors"
+              >
+                {heroCollection.name.trim()}
+              </Link>
+            )}
           </div>
         </div>
       </section>
@@ -88,10 +94,13 @@ export default async function HomePage() {
                     {cat.name}
                   </h3>
                   {cat.description && (
-                    <p className="text-stone-300 text-xs mt-1 hidden md:block">
+                    <p className="text-stone-300 text-xs mt-1 hidden md:block line-clamp-2">
                       {cat.description}
                     </p>
                   )}
+                  <p className="text-stone-400 text-xs mt-2">
+                    {cat.productCount} product{cat.productCount !== 1 ? "s" : ""}
+                  </p>
                 </div>
               </Link>
             ))}
@@ -108,7 +117,7 @@ export default async function HomePage() {
                 Handpicked
               </p>
               <h2 className="font-serif text-3xl md:text-4xl text-stone-900">
-                Best Sellers
+                Our Fragrances
               </h2>
             </div>
             <Link

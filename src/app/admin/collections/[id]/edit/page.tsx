@@ -28,7 +28,7 @@ export default async function EditCollectionPage({
       <p className="text-sm text-stone-500 mb-8">
         Update collection details and assign products below
       </p>
-      <CategoryForm category={category} />
+      <CategoryForm category={category} stayOnPage />
       <CollectionProductsManager
         categoryId={category.id}
         categoryName={category.name}

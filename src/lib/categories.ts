@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import { categories, products } from "@/lib/db/schema";
-import { eq, count, inArray } from "drizzle-orm";
+import { eq, inArray, isNotNull } from "drizzle-orm";
 
 export async function getAllCategoriesAdmin() {
   return db.select().from(categories).orderBy(categories.name);
@@ -9,24 +9,35 @@ export async function getAllCategoriesAdmin() {
 export async function getAllCategoriesWithProductCounts() {
   const allCategories = await db.select().from(categories).orderBy(categories.name);
 
-  const counts = await db
+  const assignedProducts = await db
     .select({
+      id: products.id,
+      name: products.name,
       categoryId: products.categoryId,
-      productCount: count(),
     })
     .from(products)
-    .groupBy(products.categoryId);
+    .where(isNotNull(products.categoryId));
 
-  const countMap = Object.fromEntries(
-    counts
-      .filter((row) => row.categoryId)
-      .map((row) => [row.categoryId!, Number(row.productCount)]),
-  );
+  const productsByCategory: Record<string, { id: string; name: string }[]> = {};
+  for (const product of assignedProducts) {
+    if (!product.categoryId) continue;
+    if (!productsByCategory[product.categoryId]) {
+      productsByCategory[product.categoryId] = [];
+    }
+    productsByCategory[product.categoryId].push({
+      id: product.id,
+      name: product.name,
+    });
+  }
 
-  return allCategories.map((cat) => ({
-    ...cat,
-    productCount: countMap[cat.id] ?? 0,
-  }));
+  return allCategories.map((cat) => {
+    const catProducts = productsByCategory[cat.id] ?? [];
+    return {
+      ...cat,
+      productCount: catProducts.length,
+      products: catProducts,
+    };
+  });
 }
 
 export async function getCategoryById(id: string) {
