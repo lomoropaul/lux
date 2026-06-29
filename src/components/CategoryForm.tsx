@@ -2,10 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import type { Category } from "@/lib/db/schema";
 import { slugify } from "@/lib/utils";
-import { UploadButton } from "@/components/uploadthing";
+import { ImageUploadField } from "@/components/ImageUploadField";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -98,24 +97,16 @@ export function CategoryForm({ category, stayOnPage = false }: CategoryFormProps
         />
       </div>
 
-      <div className="space-y-2">
-        <Label>Collection Image</Label>
-        {form.imageUrl && (
-          <div className="relative w-full h-40 bg-stone-100 rounded-md overflow-hidden mb-3">
-            <Image src={form.imageUrl} alt="Collection" fill className="object-cover" sizes="400px" />
-          </div>
-        )}
-        <UploadButton
-          endpoint="productImage"
-          onClientUploadComplete={(res) => {
-            if (res?.[0]) {
-              const url = res[0].url ?? (res[0] as { ufsUrl?: string }).ufsUrl;
-              if (url) setForm((prev) => ({ ...prev, imageUrl: url }));
-            }
-          }}
-          onUploadError={(err) => setError(err.message)}
-        />
-      </div>
+      <ImageUploadField
+        label="Collection Image"
+        hint="Drag & drop or tap to upload. Shows on the homepage collections grid."
+        endpoint="productImage"
+        value={form.imageUrl}
+        onChange={(url) => setForm((prev) => ({ ...prev, imageUrl: url }))}
+        onClear={() => setForm((prev) => ({ ...prev, imageUrl: "" }))}
+        onError={setError}
+        previewAspect="wide"
+      />
 
       {error && <p className="text-red-600 text-sm">{error}</p>}
       {success && <p className="text-green-700 text-sm">{success}</p>}

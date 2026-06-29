@@ -29,8 +29,11 @@ export function Header({ collections }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-stone-200">
-      <div className="bg-stone-900 text-stone-100 text-center text-xs tracking-[0.15em] uppercase py-2.5 px-4">
-        Free shipping on orders over ${FREE_SHIPPING_THRESHOLD_USD} USD · East Africa wide
+      <div className="bg-stone-900 text-stone-100 text-center text-[10px] sm:text-xs tracking-[0.12em] sm:tracking-[0.15em] uppercase py-2 px-3 sm:py-2.5 sm:px-4">
+        <span className="sm:hidden">Free shipping over ${FREE_SHIPPING_THRESHOLD_USD}</span>
+        <span className="hidden sm:inline">
+          Free shipping on orders over ${FREE_SHIPPING_THRESHOLD_USD} USD · East Africa wide
+        </span>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">

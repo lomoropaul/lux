@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-import { UploadButton } from "@/components/uploadthing";
+import { ImageUploadField } from "@/components/ImageUploadField";
 import type { Product, Category } from "@/lib/db/schema";
 import { slugify } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -166,36 +165,31 @@ export function ProductForm({ product, categories }: ProductFormProps) {
         <Input id="notes" name="notes" value={form.notes} onChange={handleChange} placeholder="Top: Bergamot · Heart: Rose · Base: Oud" />
       </div>
 
-      <div className="space-y-2">
-        <Label>Product Image</Label>
-        {form.imageUrl && (
-          <div className="relative w-32 h-40 bg-stone-100 mb-3 overflow-hidden">
-            <Image
-              src={form.imageUrl}
-              alt="Product"
-              fill
-              className="object-cover"
-              sizes="128px"
-            />
-          </div>
-        )}
-        <UploadButton
-          endpoint="productImage"
-          onClientUploadComplete={(res) => {
-            if (res?.[0]) {
-              const url = res[0].url ?? (res[0] as { ufsUrl?: string }).ufsUrl;
-              if (url) {
-                setForm((prev) => ({
-                  ...prev,
-                  imageUrl: prev.imageUrl || url,
-                  images: [...new Set([...prev.images, url])],
-                }));
-              }
-            }
-          }}
-          onUploadError={(err) => setError(err.message)}
-        />
-      </div>
+      <ImageUploadField
+        label="Product Image"
+        hint="Required. Drag & drop or tap to upload the main product photo."
+        endpoint="productImage"
+        value={form.imageUrl}
+        onChange={(url) =>
+          setForm((prev) => ({
+            ...prev,
+            imageUrl: url,
+            images: [...new Set([...prev.images, url])],
+          }))
+        }
+        onClear={() => setForm((prev) => ({ ...prev, imageUrl: "" }))}
+        onError={setError}
+        previewAspect="portrait"
+      />
+
+      {form.images.length > 1 && (
+        <div className="space-y-2">
+          <Label>Additional images</Label>
+          <p className="text-xs text-stone-500">
+            {form.images.length} image{form.images.length !== 1 ? "s" : ""} saved
+          </p>
+        </div>
+      )}
 
       <div className="flex gap-6">
         <label className="flex items-center gap-2 text-sm text-stone-700 cursor-pointer">

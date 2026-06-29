@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { UploadButton } from "@/components/uploadthing";
+import { ImageUploadField } from "@/components/ImageUploadField";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -63,49 +63,51 @@ export function HeroImageManager({
       <CardHeader>
         <CardTitle>Homepage hero image</CardTitle>
         <CardDescription>
-          Upload a new hero image here — works on Vercel production without editing
-          files. Recommended: 1920×1080 or similar, under 4MB.
+          Upload a new hero image — works on Vercel without editing files.
+          Recommended: 1920×1080, under 4MB.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="relative w-full max-w-2xl aspect-[16/9] bg-stone-100 rounded-md overflow-hidden">
-          <Image
-            src={currentUrl}
-            alt="Current hero"
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 672px"
-            unoptimized={currentUrl.startsWith("/")}
-          />
-        </div>
+        {!usingUploadedImage && (
+          <div className="space-y-2">
+            <p className="text-sm font-medium text-stone-700">Current hero</p>
+            <div className="relative w-full aspect-[16/9] max-w-2xl bg-stone-100 rounded-md overflow-hidden border border-stone-200">
+              <Image
+                src={currentUrl}
+                alt="Current hero"
+                fill
+                className="object-cover object-[center_30%] sm:object-center"
+                sizes="(max-width: 768px) 100vw, 672px"
+                unoptimized={currentUrl.startsWith("/")}
+              />
+            </div>
+            <p className="text-xs text-stone-500">
+              Using default public/hero.jpg — upload below to replace on production.
+            </p>
+          </div>
+        )}
 
-        <p className="text-sm text-stone-500">
-          {usingUploadedImage
-            ? "Using uploaded hero image (stored in database)."
-            : "Using default file at public/hero.jpg."}
-        </p>
+        <ImageUploadField
+          label={usingUploadedImage ? "Hero image" : "Upload new hero"}
+          hint="Drag & drop or tap to upload"
+          endpoint="heroImage"
+          value={usingUploadedImage ? currentUrl : ""}
+          onChange={saveHeroUrl}
+          onError={setError}
+          previewAspect="wide"
+          allowedContent="PNG, JPG or WEBP up to 8MB"
+        />
 
-        <div className="flex flex-wrap items-center gap-3">
-          <UploadButton
-            endpoint="heroImage"
-            onClientUploadComplete={(res) => {
-              const url =
-                res?.[0]?.url ?? (res?.[0] as { ufsUrl?: string } | undefined)?.ufsUrl;
-              if (url) saveHeroUrl(url);
-            }}
-            onUploadError={(err) => setError(err.message)}
-          />
-          {usingUploadedImage && (
-            <Button
-              type="button"
-              variant="outline"
-              onClick={resetToDefault}
-              disabled={loading}
-            >
-              Use default hero.jpg
-            </Button>
-          )}
-        </div>
+        {usingUploadedImage && (
+          <Button
+            type="button"
+            variant="outline"
+            onClick={resetToDefault}
+            disabled={loading}
+          >
+            Use default hero.jpg
+          </Button>
+        )}
 
         {error && <p className="text-red-600 text-sm">{error}</p>}
         {success && <p className="text-green-700 text-sm">{success}</p>}
