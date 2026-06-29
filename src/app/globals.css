@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* Class-based dark mode — toggled by adding .dark to <html> */
-@variant dark (&:where(.dark, .dark *));
+@variant dark (&:is(.dark, .dark *));
 
 :root {
   --background: #fafaf9;
@@ -36,6 +36,23 @@ body {
 .font-serif {
   font-family: var(--font-cormorant), Georgia, serif;
 }
+
+/* ─── Guaranteed dark mode overrides ───────────────────────────────────────
+   html.dark gives specificity (0,2,1) vs Tailwind's single-class (0,1,0),
+   so these always win regardless of @variant dark behaviour.
+   ─────────────────────────────────────────────────────────────────────── */
+html.dark .text-stone-900 { color: #ffffff; }
+html.dark .text-stone-800 { color: #e7e5e4; }
+html.dark .text-stone-700 { color: #d6d3d1; }
+html.dark .text-stone-600 { color: #a8a29e; }
+html.dark .text-stone-500 { color: #78716c; }
+
+html.dark .bg-white       { background-color: #0f0e0d; }
+html.dark .bg-stone-50    { background-color: #1c1917; }
+html.dark .bg-stone-100   { background-color: #292524; }
+
+html.dark .border-stone-200 { border-color: #44403c; }
+html.dark .border-stone-300 { border-color: #57534e; }
 
 /* UploadThing — buttons & dropzones */
 [data-ut-element="button"] {
