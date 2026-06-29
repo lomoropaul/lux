@@ -61,21 +61,21 @@ export default async function HomePage() {
       {/* Best Sellers — primary product showcase */}
       <section
         id="best-sellers"
-        className="py-12 sm:py-16 md:py-24 bg-white scroll-mt-16 md:scroll-mt-20"
+        className="py-12 sm:py-16 md:py-24 bg-white dark:bg-stone-950 scroll-mt-16 md:scroll-mt-20 transition-colors duration-200"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 gap-3 sm:gap-4">
             <div>
-              <p className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-amber-700 mb-2 sm:mb-3">
+              <p className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-amber-700 dark:text-amber-500 mb-2 sm:mb-3">
                 Handpicked
               </p>
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-stone-900">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-stone-900 dark:text-white">
                 Best Sellers
               </h2>
             </div>
             <Link
               href="/shop"
-              className="text-[10px] sm:text-xs tracking-[0.2em] uppercase text-stone-600 hover:text-amber-700 border-b border-stone-300 hover:border-amber-700 pb-0.5 transition-colors self-start"
+              className="text-[10px] sm:text-xs tracking-[0.2em] uppercase text-stone-600 dark:text-stone-400 hover:text-amber-700 border-b border-stone-300 dark:border-stone-700 hover:border-amber-700 pb-0.5 transition-colors self-start"
             >
               View All
             </Link>
@@ -103,10 +103,10 @@ export default async function HomePage() {
       {categories.length > 0 && (
         <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 max-w-7xl mx-auto">
           <div className="text-center mb-8 sm:mb-12">
-            <p className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-amber-700 mb-2 sm:mb-3">
+            <p className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-amber-700 dark:text-amber-500 mb-2 sm:mb-3">
               Browse by
             </p>
-            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-stone-900">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-stone-900 dark:text-white">
               Collections
             </h2>
           </div>
@@ -169,7 +169,7 @@ export default async function HomePage() {
       </section>
 
       {/* Trust badges */}
-      <section className="py-10 sm:py-16 border-t border-stone-200">
+      <section className="py-10 sm:py-16 border-t border-stone-200 dark:border-stone-800 dark:bg-stone-950 transition-colors duration-200">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
           {[
             { title: "Authentic", desc: "100% genuine fragrances" },
@@ -178,10 +178,10 @@ export default async function HomePage() {
             { title: "Secure Order", desc: "Order via WhatsApp" },
           ].map((badge) => (
             <div key={badge.title}>
-              <h3 className="text-[10px] sm:text-xs tracking-[0.2em] uppercase text-stone-900 mb-1.5 sm:mb-2">
+              <h3 className="text-[10px] sm:text-xs tracking-[0.2em] uppercase text-stone-900 dark:text-white mb-1.5 sm:mb-2">
                 {badge.title}
               </h3>
-              <p className="text-[10px] sm:text-xs text-stone-500 leading-relaxed">
+              <p className="text-[10px] sm:text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
                 {badge.desc}
               </p>
             </div>

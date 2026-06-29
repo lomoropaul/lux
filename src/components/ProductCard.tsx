@@ -14,7 +14,7 @@ export function ProductCard({ product }: { product: Product }) {
 
   return (
     <Link href={`/products/${product.slug}`} className="group block">
-      <div className="relative aspect-[3/4] bg-stone-100 overflow-hidden mb-3 sm:mb-4">
+      <div className="relative aspect-[3/4] bg-stone-100 dark:bg-stone-800 overflow-hidden mb-3 sm:mb-4">
         <Image
           src={product.imageUrl}
           alt={product.name}
@@ -35,17 +35,17 @@ export function ProductCard({ product }: { product: Product }) {
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors" />
       </div>
 
-      <p className="text-[10px] tracking-[0.2em] uppercase text-stone-500 mb-1">
+      <p className="text-[10px] tracking-[0.2em] uppercase text-stone-500 dark:text-stone-400 mb-1">
         {product.brand}
       </p>
-      <h3 className="font-serif text-sm sm:text-base text-stone-900 group-hover:text-amber-800 transition-colors leading-snug line-clamp-2">
+      <h3 className="font-serif text-sm sm:text-base text-stone-900 dark:text-white group-hover:text-amber-800 dark:group-hover:text-amber-400 transition-colors leading-snug line-clamp-2">
         {product.name}
       </h3>
       {product.size && (
-        <p className="text-xs text-stone-500 mt-0.5">{product.size}</p>
+        <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">{product.size}</p>
       )}
       <div className="flex items-center gap-2 mt-2">
-        <Price amount={price} className="text-sm font-medium text-stone-900" />
+        <Price amount={price} className="text-sm font-medium text-stone-900 dark:text-white" />
         {onSale && (
           <Price amount={compareAt} className="text-sm text-stone-400 line-through" />
         )}
