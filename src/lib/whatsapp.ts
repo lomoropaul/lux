@@ -29,7 +29,7 @@ export type CheckoutDetails = {
 export function buildWhatsAppMessage(details: CheckoutDetails) {
   const { currency } = details;
   const lines: string[] = [
-    "🛍️ *New Order — LUX Fragrances*",
+    "🛍️ *New Order — LUX ESSENCE*",
     "",
     "*Customer Details*",
     `Name: ${details.firstName} ${details.lastName}`,

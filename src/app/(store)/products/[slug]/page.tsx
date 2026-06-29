@@ -16,7 +16,7 @@ export async function generateMetadata({
   const product = await getProductBySlug(slug);
   if (!product) return { title: "Not Found" };
   return {
-    title: `${product.name} | LUX Fragrances`,
+    title: `${product.name} | LUX ESSENCE`,
     description: product.description,
   };
 }

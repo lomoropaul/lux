@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "About | LUX Fragrances",
+  title: "About | LUX ESSENCE",
 };
 
 export default function AboutPage() {
@@ -13,7 +13,7 @@ export default function AboutPage() {
       </h1>
       <div className="prose prose-stone dark:prose-invert text-stone-600 dark:text-stone-300 space-y-4 text-sm leading-relaxed">
         <p>
-          LUX Fragrances was born from a passion for authentic luxury scents.
+          LUX ESSENCE was born from a passion for authentic luxury scents.
           Inspired by the world&apos;s finest perfumeries, we curate a collection
           of premium fragrances that capture the essence of elegance, mystery,
           and sophistication.

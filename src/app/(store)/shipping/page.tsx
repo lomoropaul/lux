@@ -1,7 +1,7 @@
 import { FREE_SHIPPING_THRESHOLD_USD } from "@/lib/currency";
 
 export const metadata = {
-  title: "Shipping & Returns | LUX Fragrances",
+  title: "Shipping & Returns | LUX ESSENCE",
 };
 
 export default function ShippingPage() {

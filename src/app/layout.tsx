@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "LUX Fragrances | Luxury Perfumes & Oud",
+  title: "LUX ESSENCE | Luxury Perfumes & Oud",
   description:
     "Discover authentic luxury fragrances. Premium oud, floral, and unisex scents curated for the discerning collector.",
 };

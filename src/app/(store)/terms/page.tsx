@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Terms of Service | LUX Fragrances",
+  title: "Terms of Service | LUX ESSENCE",
 };
 
 export default function TermsPage() {
@@ -13,7 +13,7 @@ export default function TermsPage() {
             1. Agreement
           </h2>
           <p>
-            By accessing or purchasing from LUX Fragrances, you agree to these Terms of
+            By accessing or purchasing from LUX ESSENCE, you agree to these Terms of
             Service. If you do not agree, please do not use our website or services.
           </p>
         </section>
@@ -61,7 +61,7 @@ export default function TermsPage() {
             6. Limitation of Liability
           </h2>
           <p>
-            LUX Fragrances is not liable for indirect, incidental, or consequential
+            LUX ESSENCE is not liable for indirect, incidental, or consequential
             damages arising from use of our products or website, to the fullest extent
             permitted by law.
           </p>

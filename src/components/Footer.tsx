@@ -14,7 +14,7 @@ export function Footer({ collections }: FooterProps) {
         <div className="md:col-span-1">
           <Image
             src="/logo.png"
-            alt="LUX Fragrances"
+            alt="LUX ESSENCE"
             width={100}
             height={36}
             className="h-9 w-auto mb-4"
@@ -105,7 +105,7 @@ export function Footer({ collections }: FooterProps) {
       </div>
 
       <div className="border-t border-stone-800 py-6 text-center text-xs text-stone-500 tracking-wide px-4">
-        © {new Date().getFullYear()} LUX Fragrances. All rights reserved.
+        © {new Date().getFullYear()} LUX ESSENCE. All rights reserved.
         &nbsp;·&nbsp; Free shipping over ${FREE_SHIPPING_THRESHOLD_USD} USD across East Africa
       </div>
     </footer>

@@ -58,6 +58,39 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* About — brand story */}
+      <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-stone-900 text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-amber-400 mb-3 sm:mb-4">
+            Our Story
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl mb-6 sm:mb-8">
+            About LUX ESSENCE
+          </h2>
+          <p className="text-stone-300 text-sm sm:text-base leading-relaxed mb-5 max-w-2xl mx-auto">
+            LUX ESSENCE was born from a passion for authentic luxury scents.
+            Inspired by the world&apos;s finest perfumeries, we curate a collection
+            of premium fragrances that capture the essence of elegance, mystery,
+            and sophistication.
+          </p>
+          <p className="text-stone-300 text-sm sm:text-base leading-relaxed mb-5 max-w-2xl mx-auto">
+            Every bottle in our collection is selected for its exceptional quality,
+            longevity, and artistry. From rich oud compositions to delicate floral
+            bouquets, we offer something for every discerning nose.
+          </p>
+          <p className="text-stone-300 text-sm sm:text-base leading-relaxed mb-8 max-w-2xl mx-auto">
+            Order with confidence through our WhatsApp checkout — our team is
+            always ready to help you find your perfect scent.
+          </p>
+          <Link
+            href="/about"
+            className="inline-block border border-amber-400 text-amber-400 px-6 sm:px-8 py-3 text-[10px] sm:text-xs tracking-[0.2em] uppercase hover:bg-amber-400 hover:text-stone-900 transition-colors"
+          >
+            Learn More
+          </Link>
+        </div>
+      </section>
+
       {/* Best Sellers — primary product showcase */}
       <section
         id="best-sellers"

@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Privacy Policy | LUX Fragrances",
+  title: "Privacy Policy | LUX ESSENCE",
 };
 
 export default function PrivacyPage() {

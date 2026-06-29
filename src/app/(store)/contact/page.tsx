@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Contact | LUX Fragrances",
+  title: "Contact | LUX ESSENCE",
 };
 
 export default function ContactPage() {
@@ -14,7 +14,7 @@ export default function ContactPage() {
         out to us on WhatsApp and our team will respond promptly.
       </p>
       <a
-        href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "") || ""}?text=${encodeURIComponent("Hi! I have a question about LUX Fragrances.")}`}
+        href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "") || ""}?text=${encodeURIComponent("Hi! I have a question about LUX ESSENCE.")}`}
         target="_blank"
         rel="noopener noreferrer"
         className="inline-block bg-[#25D366] text-white px-8 py-4 text-xs tracking-[0.2em] uppercase hover:bg-[#1da851] transition-colors"

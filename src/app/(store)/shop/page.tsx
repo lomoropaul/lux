@@ -8,7 +8,7 @@ import {
 } from "@/lib/products";
 
 export const metadata = {
-  title: "Shop All | LUX Fragrances",
+  title: "Shop All | LUX ESSENCE",
 };
 
 export default async function ShopPage({
